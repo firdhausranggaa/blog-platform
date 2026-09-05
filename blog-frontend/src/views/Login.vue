@@ -11,6 +11,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import api from '../axios';
+import { authState } from '../store';
 
 const username = ref('');
 const password = ref('');
@@ -18,10 +19,14 @@ const router = useRouter();
 
 const handleLogin = async () => {
     try {
-        await api.post('/user/login', {
+        const response = await api.post('/user/login', {
             username: username.value,
             password: password.value
         });
+
+        authState.isLoggedIn = true;
+        authState.username = response.data.username;
+
         alert('Login berhasil!');
         router.push('/');
     } catch (error) {
