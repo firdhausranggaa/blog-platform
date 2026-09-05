@@ -13,7 +13,8 @@
 
     <template v-else>
       <span>|</span>
-      <router-link to="/login">Login</router-link>
+      <router-link to="/login">Login</router-link> |
+      <router-link to="/register">Register</router-link>
     </template>
   </nav>
 
